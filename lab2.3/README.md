@@ -1,6 +1,8 @@
-# SET UP AWS-CLI, KUBECTL, EKSCTL, EKS (K8S in AWS), GO BINARY AND AWS-IAM-AUTHENTICATOR. All commands are prepared to run from a Linux instance. Feel free to change it for the O.S. that you are working in.
+# Service mesh with Isto lab
 
-**1 – In your computer&#39;s CLI, follow the instructions below to install aws-cli (~2 minutes).**
+*All commands are prepared to run from a Linux instance. Feel free to change it for the O.S. that you are working in.
+
+**1 – Follow the instructions below to install aws-cli (~2 minutes).**
 
     mkdir EKSLAB ; cd EKSLAB
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -12,7 +14,7 @@
     sudo ./aws/install --update
     aws --version
 
-**2 – In your computer&#39;s CLI, follow the instructions below to install kubectl (~2 minutes).**
+**2 – Installing kubectl (~2 minutes).**
 
     curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
     curl -LO https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl
@@ -20,7 +22,7 @@
     echo 'source > (kubectl completion bash)' >> ~/.bashrc
     kubectl version --client --output=yaml
 
-**3 – In your computer's CLI, follow the instructions below to install eksctl (~2 minutes).**
+**3 – Installing eksctl (~2 minutes).**
 
 For further information, see:[**https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html**](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
 
@@ -28,13 +30,13 @@ For further information, see:[**https://docs.aws.amazon.com/eks/latest/userguide
     sudo mv /tmp/eksctl /usr/local/bin
     eksctl version
 
-**4 – In your computer's CLI, follow the instructions below to set up the EKS cluster in AWS (~10 minutes).**
+**4 – Setting up the EKS cluster in AWS (~10 minutes).**
 
     eksctl create cluster --region sa-east-1 --name istio-on-eks --nodes 2 --ssh-public-key"~/.ssh/id_rsa.pub" --profile aws-dasa-security-hml
 
 ![](images/01-istio-eks.png)
 
-**5 - Now, you must set up go. Follow the instructions below to install the go binary (~5 minutes).**
+**5 - Setting up GO (~5 minutes).**
 
 For further information, see: [https://go.dev/doc/install](https://go.dev/doc/install)
 
@@ -50,7 +52,7 @@ In your computer's CLI, type the follow commands:
 
     go install sigs.k8s.io/aws-iam-authenticator/cmd/aws-iam-authenticator@master
 
-**7 – Follow the instructions below to check the communication with EKS (~2 minutes).**
+**7 – Check the communication with EKS (~2 minutes).**
 
     rm -f ~/.kube/config
     aws eks update-kubeconfig --region sa-east-1 --name istio-on-eks --profile aws-dasa-security-hml
@@ -59,9 +61,9 @@ In your computer's CLI, type the follow commands:
 
 Once all settings above have been done, let&#39;s start HELM + TILLER + Istio setup.
 
-## SET UP HELM + TILLER
+## Setting up HELM + TILLER
 
-**1 – In your instance, follow the instructions below to install HELM (~2 minutes).**
+**1 – Installing Helm (~2 minutes).**
 
 For further information, see: [**https://v2.helm.sh/docs/using\_helm/#installing-helm**](https://v2.helm.sh/docs/using_helm/#installing-helm)
 
@@ -71,7 +73,7 @@ For further information, see: [**https://v2.helm.sh/docs/using\_helm/#installing
     sudo apt-get update
     sudo apt-get install helm2
 
-**2 - In your instance, follow the instructions below to install the service account for Tiller's access (~5 minutes).**
+**2 - Creating a service account for Tiller's access (~5 minutes).**
 
     vim rbac-config.yaml
 
@@ -102,9 +104,9 @@ Then execute the following commands:
     helm init --service-account tiller --history-max 200
     kubectl get serviceaccounts --all-namespaces \| grep -i "tiller"
 
-## SET UP ISTIO 
+## Setting up ISTIO 
 
-**1 – In your instance, follow the instructions below to install ISTIO (~7 minutes).**
+**1 – Installing ISTIO (~7 minutes).**
 
     curl -L https://istio.io/downloadIstio | sh -
     export PATH="$PATH:~/EKSLAB/istio-1.13.3/bin"
@@ -117,29 +119,31 @@ Then execute the following commands:
     kubectl label namespace default istio-injection=enabled
     kubectl get namespace --all-namespaces
 
-## SET UP APPLICATION BOOKINFO
+## Setting up the application BookInfo
 
-**1 – In your instance CLI, follow the instructions below to install bookinfo app (~5 minutes).**
+**1 – Installing the BookInfo app (~5 minutes).**
 
     kubectl apply -f ~/EKSLAB/istio-1.13.3/samples/bookinfo/platform/kube/bookinfo.yaml
     kubectl apply -f ~/EKSLAB/istio-1.13.3/samples/bookinfo/networking/bookinfo-gateway.yaml
 
-## ACCESS THE APPLICATION BOOKINFO
+## Acessing the BookInfo App
 
-**1 – In your computer's CLI, follow the instructions below to get the app's URL (~2 minutes).**
+**1 – Getting the App URL (~2 minutes).**
 
     export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
     export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
     export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
     echo $GATEWAY_URL/productpage
 
-Once you have successfully deployed the application, open your browser and type the URL obtained previously. The follow page will be displayed on your browser:
+Once you have successfully deployed the application, open your webbrowser and type the URL obtained previously. The follow page will be displayed on your browser:
 
 ![](images/02-istio-eks.png)
 
-## TRAFFIC ROUTING WITH ISTIO
+## Changing the traffic routing with Istio
 
-**1 – In your computer&#39;s CLI, follow the instructions below to manipulate the routing to the application Bookinfo (~5 minutes).**
+**1 – Changing the routing to the application Bookinfo (~5 minutes).**
 
     kubectl apply -f ~/EKSLAB/istio-1.13.3/samples/bookinfo/networking/destination-rule-1.yaml
     kubectl apply -f ~/EKSLAB/istio-1.13.3/samples/bookinfo/networking/destination-rule-all.yaml
+
+Now look the app again using your web browser to check the difference after each command.
