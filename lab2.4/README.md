@@ -8,7 +8,7 @@ Today all pictures come with metadata like GPS info, camera, etc. Here is a usef
 
 ![](images/Img_01_Lab_2.4.png?raw=true)
 
-1. From AWS Management Console, time to create the buckets that will be used for our function. Create one called &quot;input-image-\&lt;myPhoneNumber\&gt;&quot; and another called &quot;output-image-\&lt;myPhoneNumber\&gt;&quot; using the procedure below.
+1. From AWS Management Console, time to create the buckets that will be used for our function. Create one called `input-image-[PhoneNumber]` and another called `output-image-[PhoneNumber] using the procedure below.
 
 Important - The buckets should start with the requested names, otherwise the clean up script will not work.
 
