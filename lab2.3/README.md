@@ -32,7 +32,7 @@ For further information, see:[**https://docs.aws.amazon.com/eks/latest/userguide
 
 **4 – Setting up the EKS cluster in AWS (~10 minutes).**
 
-    eksctl create cluster --region sa-east-1 --name istio-on-eks --nodes 2 --ssh-public-key"~/.ssh/id_rsa.pub" --profile aws-dasa-security-hml
+    eksctl create cluster --region sa-east-1 --name istio-on-eks --nodes 2 --ssh-public-key"~/.ssh/id_rsa.pub" --profile default
 
 ![](images/01-istio-eks.png)
 
