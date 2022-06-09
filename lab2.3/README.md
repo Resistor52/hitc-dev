@@ -55,7 +55,7 @@ In your computer's CLI, type the follow commands:
 **7 – Check the communication with EKS (~2 minutes).**
 
     rm -f ~/.kube/config
-    aws eks update-kubeconfig --region sa-east-1 --name istio-on-eks --profile aws-dasa-security-hml
+    aws eks update-kubeconfig --region sa-east-1 --name istio-on-eks --profile default
     kubectl get nodes
     kubectl get pods --all-namespaces
 
