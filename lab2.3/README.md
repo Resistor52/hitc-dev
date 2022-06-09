@@ -102,7 +102,7 @@ Then execute the following commands:
 
     kubectl apply -f rbac-config.yaml
     helm init --service-account tiller --history-max 200
-    kubectl get serviceaccounts --all-namespaces \| grep -i "tiller"
+    kubectl get serviceaccounts --all-namespaces | grep -i "tiller"
 
 ## Setting up ISTIO 
 
