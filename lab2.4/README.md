@@ -28,7 +28,7 @@ Repeat this step for output bucket.
 
 Info - As S3 uses the global unique bucket, two students can&#39;t use the same bucket name.
 
-1. Create a custom policy available in https://github.com/Resistor52/hitc-dev/blob/main/lab2.4/s3\_policy.json to add necessary permissions for the file transformation lambda function..
+1. Create a custom policy available in [https://github.com/Resistor52/hitc-dev/blob/main/lab2.4/s3_policy.json](https://github.com/Resistor52/hitc-dev/blob/main/lab2.4/s3_policy.json) to add necessary permissions for the file transformation lambda function..
 
 ![](images/Img_07_Lab_2.4.png?raw=true)
 
