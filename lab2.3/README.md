@@ -1,6 +1,6 @@
 # Service mesh with Isto lab
 
-*All commands are prepared to run from a Linux instance. Feel free to change it for the O.S. that you are working in.
+*All commands are prepared to run from a Linux instance. 
 
 **1 – Follow the instructions below to install aws-cli (~2 minutes).**
 
