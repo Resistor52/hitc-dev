@@ -1,7 +1,7 @@
 # Service Mesh with Isto Lab
 
 ## Preparation
-* Launch an Amazon Linux EC2 instance with an instance profile that has the EKS Full Administrator premission attached.
+* Launch an Ubuntu EC2 instance with an instance profile that has the EKS Full Administrator premission attached.
 * SSH into the instance and run `ssh-keygen` to generate a SSH keypair
 
 ## Initial Setup
