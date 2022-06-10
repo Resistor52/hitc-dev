@@ -32,7 +32,7 @@ For further information, see:[**https://docs.aws.amazon.com/eks/latest/userguide
 
 **4 – Setting up the EKS cluster in AWS (~10 minutes).**
 
-    eksctl create cluster --region sa-east-1 --name istio-on-eks --nodes 2 --ssh-public-key "~/.ssh/id_rsa.pub" --profile default
+    eksctl create cluster --region us-east-1 --name istio-on-eks --nodes 2 --ssh-public-key "~/.ssh/id_rsa.pub" --profile default
 
 ![](images/01-istio-eks.png)
 
@@ -55,11 +55,11 @@ In your computer's CLI, type the follow commands:
 **7 – Check the communication with EKS (~2 minutes).**
 
     rm -f ~/.kube/config
-    aws eks update-kubeconfig --region sa-east-1 --name istio-on-eks --profile default
+    aws eks update-kubeconfig --region us-east-1 --name istio-on-eks --profile default
     kubectl get nodes
     kubectl get pods --all-namespaces
 
-Once all settings above have been done, let&#39;s start HELM + TILLER + Istio setup.
+Once all settings above have been done, start HELM + TILLER + Istio setup.
 
 ## Setting up HELM + TILLER
 
