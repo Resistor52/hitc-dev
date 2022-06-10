@@ -2,7 +2,7 @@
 
 ## Preparation
 * Launch an Ubuntu EC2 instance with an instance profile that has the EKS Full Administrator premission attached.
-* SSH into the instance and run `ssh-keygen` to generate a SSH keypair
+* SSH into the instance and run `ssh-keygen` to generate a SSH keypair. Hit the enter key to accept the default choices for generation of the key pair.
 
 ## Initial Setup
 
