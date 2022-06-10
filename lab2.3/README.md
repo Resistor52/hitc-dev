@@ -10,15 +10,10 @@
 
 ```
 mkdir EKSLAB ; cd EKSLAB
+sudo apt install -y unzip
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
-```
-
-*If aws-cli is already installed on your system then do: 
-
-```
-sudo ./aws/install --update
 aws --version
 ```
 
