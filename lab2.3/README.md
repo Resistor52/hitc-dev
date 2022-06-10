@@ -1,6 +1,10 @@
 # Service Mesh with Isto Lab
 
-*All commands are prepared to run from a Linux instance. 
+## Preparation
+* Launch an Amazon Linux EC2 instance with an instance profile that has the EKS Full Administrator premission attached.
+* SSH into the instance and run `ssh-keygen` to generate a SSH keypair
+
+## Lab
 
 **1 – Follow the instructions below to install aws-cli (~2 minutes).**
 
