@@ -1,4 +1,4 @@
-# Service mesh with Isto lab
+# Service Mesh with Isto Lab
 
 *All commands are prepared to run from a Linux instance. 
 
